@@ -4,7 +4,7 @@
 #include <sys/time.h>
 #include <time.h>
 
-#include "pkt_queue_lck.h"
+#include "pkt_queue.h"
 #define CONSUMER 1
 #define PRODUCER 4 
 #define TEST_NUM 10000000
