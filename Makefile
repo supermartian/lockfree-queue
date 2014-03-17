@@ -1,7 +1,7 @@
 CFLAGS=-ggdb -Wall -Werror
 LDFLAGS=-pthread 
 CC=gcc
-OBJECTS=pkt_queue_lck.o test.o
+OBJECTS=pkt_queue.o test.o
 TARGET=test
 
 all: $(TARGET)
