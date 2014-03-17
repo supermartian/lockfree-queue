@@ -21,8 +21,6 @@ void init_queue(struct queue_root **root)
 	(*root)->tail = (*root)->head;
 	(*root)->head->n = NULL;
 	(*root)->head->next = NULL;
-
-	(*root)->size = 0;
 }
 
 int queue_add(struct queue_root *root, void *val)
@@ -40,10 +38,8 @@ int queue_add(struct queue_root *root, void *val)
 		}
 	}
 	__sync_bool_compare_and_swap(&(root->tail), n, node);
-	__sync_synchronize();
-	__sync_fetch_and_add(&(root->size), 1);
 
-	return root->size;
+	return 1;
 }
 
 void *queue_get(struct queue_root *root)
@@ -60,8 +56,6 @@ void *queue_get(struct queue_root *root)
 			break;
 		}
 	}
-	__sync_synchronize();
-	__sync_fetch_and_sub(&(root->size), 1);
 	val = (void *) n->next->n;
 	free(n);
 	return val;
